@@ -15,12 +15,13 @@ Run the experiments using the `run.sh` script.
 For example, to run the experiments without images using the seed 0:
 
 ```
-./run.sh melart_no_img 42
+./run.sh melart_no_imges 42
 ```
 
 ## Changes
 
 - `run.sh`, `codes/main.py` and `codes/utils/functions.py`: Added optional argument with the seed for the random number generator.
 - `config`: Configuration files for the experiments
-    - `melart_no_img.yaml`: Experiments without using the entity images.
+    - `melart_no_candidate_img.yaml`: Experiments without using the entity images for the candidate entities.
+    - `melart_no_imges.yaml`: Experiments without using any images.
     - `melart.yaml`: Experiments using the entity images if available.
