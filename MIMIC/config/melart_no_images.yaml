@@ -1,0 +1,43 @@
+run_name: MELART
+seed: 45
+pretrained_model: 'openai/clip-vit-base-patch32'
+lr: 1e-5
+
+
+data:
+  num_entity: 109976
+  kb_img_folder: /FOLDER/MELART/kb_image
+  mention_img_folder: /FOLDER/MELART/mention_image
+  qid2id: /FOLDER/MELART/qid2id.json
+  entity: /FOLDER/MELART/kb_entity_no_img.json
+  train_file: /FOLDER/MELART/MELART_train_no_imgPath.json
+  dev_file: /FOLDER/MELART/MELART_dev_no_imgPath.json
+  test_file: /FOLDER/MELART/MELART_test_no_imgPath.json
+
+  batch_size: 128
+  num_workers: 8
+  text_max_length: 40
+
+  eval_chunk_size: 6000
+  eval_batch_size: 20
+  embed_update_batch_size: 512
+
+
+model:
+  input_hidden_dim: 512
+  input_image_hidden_dim: 768
+  hidden_dim: 96
+  dv: 96
+  dt: 512
+  TGLU_hidden_dim: 96
+  IDLU_hidden_dim: 96
+  CMFU_hidden_dim: 96
+
+
+trainer:
+  accelerator: 'gpu'
+  devices: 1
+  max_epochs: 20
+  num_sanity_val_steps: 0
+  check_val_every_n_epoch: 2
+  log_every_n_steps: 30
