@@ -37,6 +37,7 @@ def get_topk_predictions(
     nn_candidates = []
     nn_labels = []
     nn_worlds = []
+    nn_indices = []
     stats = {}
 
     if is_zeshel:
@@ -101,6 +102,7 @@ def get_topk_predictions(
             nn_candidates.append(cur_candidates.cpu().tolist())
             nn_labels.append(pointer)
             nn_worlds.append(src)
+            nn_indices.append(inds.tolist())
 
     res = Stats(top_k)
     for src in range(world_size):
@@ -121,6 +123,7 @@ def get_topk_predictions(
         'context_vecs': nn_context,
         'candidate_vecs': nn_candidates,
         'labels': nn_labels,
+        'indices': nn_indices,
     }
 
     if is_zeshel:

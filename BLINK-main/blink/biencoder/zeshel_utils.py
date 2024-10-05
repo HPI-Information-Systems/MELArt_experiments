@@ -7,6 +7,7 @@
 
 # Utility code for zeshel dataset
 import json
+from pathlib import Path
 import torch
 import numpy as np
 # DOC_PATH = "/private/home/ledell/zeshel/data/documents/"
@@ -49,7 +50,8 @@ def load_entity_dict_zeshel(logger, params):
         end_idx = 16
     # load data
     for i, src in enumerate(WORLDS):#WORLDS[start_idx:end_idx]
-        fname = DOC_PATH + src + ".json"
+        data_path=Path(params["data_path"])
+        fname = data_path.parent / "documents" / "documents.jsonl"
         cur_dict = {}
         doc_list = []
         src_id = world_to_id[src]
@@ -57,7 +59,7 @@ def load_entity_dict_zeshel(logger, params):
             for line in f:
                 line = line.rstrip()
                 item = json.loads(line)
-                text = item["title"]+". "+item["text"]
+                text = item["text"]#item["title"]+". "+item["text"]
                 doc_list.append(text[:256])
 
                 # if params["debug"]:

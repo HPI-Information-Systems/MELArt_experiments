@@ -175,7 +175,7 @@ class BlinkParser(argparse.ArgumentParser):
         )
         parser.add_argument(
             "--output_eval_file",
-            default="/scratch/user/uqlle6/code/artemo/BLINK-main/output/output_eval.txt",
+            #default="/scratch/user/uqlle6/code/artemo/BLINK-main/output/output_eval.txt",
             type=str,
             help="The txt file where the the evaluation results will be written.",
         )
