@@ -71,10 +71,14 @@ def get_ranks(out, labels):
         if label_i == -1:
             ranks.append(-1)
         else:
-            rank=sum([1 for j in out_i if j > out_i[label_i]])
+            rank=0
+            for j in out_i:
+                if j > out_i[label_i]:
+                    rank+=1
+            #rank=sum([1 for j in out_i if out_i[j] > out_i[label_i]])
             ranks.append(rank)
         # compute the sorted indices
-        sorted_indices_i = np.argsort(out_i)
+        sorted_indices_i = np.argsort((-out_i)) # descending order
         sorted_indices.append(sorted_indices_i)
         # rank = 1
         # for j in range(len(out_i)):
@@ -245,7 +249,7 @@ def main(params):
 
     context_input = modify(context_input, candidate_input, max_seq_length)
     test_tensor_data = TensorDataset(context_input, label_input)
-    test_sampler = RandomSampler(test_tensor_data)
+    test_sampler = SequentialSampler(test_tensor_data)
 
     test_dataloader = DataLoader(
         test_tensor_data, 
