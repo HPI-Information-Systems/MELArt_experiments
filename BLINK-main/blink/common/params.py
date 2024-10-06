@@ -17,6 +17,10 @@ ENT_START_TAG = "[unused0]"
 ENT_END_TAG = "[unused1]"
 ENT_TITLE_TAG = "[unused2]"
 
+def boolean_string(s):
+    if s not in {'False', 'True'}:
+        raise ValueError('Not a valid boolean string')
+    return s == 'True'
 
 class BlinkParser(argparse.ArgumentParser):
     """
@@ -86,7 +90,7 @@ class BlinkParser(argparse.ArgumentParser):
         parser.add_argument(
             "--zeshel",
             default=True,
-            type=bool,
+            type=boolean_string,
             help="Whether the dataset is from zeroshot.",
         )
 

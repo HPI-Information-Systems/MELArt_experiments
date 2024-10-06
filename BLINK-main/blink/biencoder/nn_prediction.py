@@ -88,8 +88,8 @@ def get_topk_predictions(
                     break
             stats[src].add(pointer)
 
-            if pointer == -1:
-                continue
+            #if pointer == -1:
+            #    continue
 
             if not save_predictions:
                 continue
