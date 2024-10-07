@@ -204,6 +204,13 @@ def main(params):
     context_input = train_data["context_vecs"]
     candidate_input = train_data["candidate_vecs"]
     label_input = train_data["labels"]
+
+    #filter labels that are -1
+    mask = label_input != -1
+    context_input = context_input[mask]
+    candidate_input = candidate_input[mask]
+    label_input = label_input[mask]
+
     if params["debug"]:
         max_n = 200
         context_input = context_input[:max_n]
@@ -229,6 +236,13 @@ def main(params):
     context_input = valid_data["context_vecs"]
     candidate_input = valid_data["candidate_vecs"]
     label_input = valid_data["labels"]
+
+    # filter labels that are -1
+    mask = label_input != -1
+    context_input = context_input[mask]
+    candidate_input = candidate_input[mask]
+    label_input = label_input[mask]
+
     if params["debug"]:
         max_n = 200
         context_input = context_input[:max_n]
