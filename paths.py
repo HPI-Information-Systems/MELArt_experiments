@@ -5,11 +5,7 @@ BASE_MELART_PATH = Path.home() / "MELArt/output_files"
 
 MELART_IMAGES_PATH = BASE_MELART_PATH / "images" / "files"
 
-#CURATED_ANNOTATIONS_PATH = BASE_MELART_PATH / "input_files" / 'curated_annotations.json'
-
-CANDIDATES_FOLDER_PATH = BASE_MELART_PATH / "el_candidates"
-
-#CANDIDATE_TYPES_DICT_PATH = BASE_MELART_PATH / "aux_files" / "candidate_types_dict.json"
+CANDIDATES_FILE_PATH = BASE_MELART_PATH / "el_candidates.jsonl"
 
 COMBINED_ANNOTATIONS_PATH = BASE_MELART_PATH / "melart_annotations.json"
 
