@@ -1,3 +1,4 @@
 output_datasets/*
 __pycache__/*
 *.code-workspace
+output_datasets
