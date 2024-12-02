@@ -1,3 +1,45 @@
+Adaptation of BLINK for experiments with MELArt, the original repository can be found [here](https://github.com/facebookresearch/BLINK)
+
+To run the experiments with MELArt use the following commands:
+
+```
+python blink/biencoder/train_biencoder.py   --data_path data/melart_blink/blink_format    --output_path models/BLINK_MODELS/<JOB1>  --learning_rate 3e-05    --num_train_epochs 10    --max_context_length 128    --max_cand_length 128   --train_batch_size 8    --eval_batch_size 8    --bert_model bert-large-uncased    --type_optimization all_encoder_layers    --data_parallel   --print_interval  100   --eval_interval 2000 --seed $SEED
+```
+
+```
+python blink/biencoder/eval_biencoder.py \
+ --path_to_model models/BLINK_MODELS/<JOB1>/pytorch_model.bin \
+ --data_path data/melart_blink/blink_format \
+ --output_path output/melart_blink/<JOB2> \
+ --encode_batch_size 32 --eval_batch_size 32 --top_k 30 --save_topk_result \
+ --bert_model bert-large-uncased --mode train,valid,test \
+ --zeshel False --data_parallel
+```
+Run Inference_biencoder.ipynb to get the top30 candidates for each mention in the dataset.
+
+```
+python blink/crossencoder/train_cross.py \
+  --data_path  output/melart_blink/<JOB2>/top30_candidates \
+  --output_path models/BLINK_MODELS/<JOB3> \
+  --learning_rate 2e-05 --num_train_epochs 5 --max_context_length 128 --max_cand_length 128 \
+  --train_batch_size 2 --eval_batch_size 8 --bert_model bert-base-uncased \
+  --type_optimization all_encoder_layers --add_linear --data_parallel \
+  --zeshel False --seed $SEED
+```
+    
+```
+python blink/crossencoder/eval_cross.py \
+ --output_path models/BLINK_MODELS/<JOB4> \
+ --encode_batch_size 8 \
+ --eval_batch_size 4 \
+ --zeshel False \
+ models/BLINK_MODELS/<JOB3>
+```
+
+Run Inference_crossencoder.ipynb to get the final predictions for each mention in the dataset.
+
+--------------------------------------------------------------------------------
+
 ![BLINK logo](./img/blink_logo_banner.png)
 --------------------------------------------------------------------------------
 
