@@ -1,4 +1,4 @@
-torch==1.2.0
+torch==2.12.1
 pysolr==3.8.1
 emoji==0.5.3
 regex==2019.8.19
